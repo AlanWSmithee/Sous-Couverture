@@ -1,11 +1,15 @@
 {
     "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react-hooks/recommended",
         "eslint:recommended",
         "prettier"
     ],
-    "plugins": [],
+    "plugins": [
+        "react-refresh"
+    ],
     "parserOptions": {
-        "ecmaVersion": 2022,
+        "ecmaVersion": "latest",
         "sourceType": "module",
         "ecmaFeatures": {
             "tsx":true
@@ -15,5 +19,8 @@
         "es6": true,
         "browser": true,
         "node": true
+    },
+    "rules": {
+        "react-refresh/only-export-components": "warn"
     }
 }
