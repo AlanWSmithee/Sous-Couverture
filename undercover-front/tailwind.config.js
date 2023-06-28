@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
     theme: {
       // --snip--
@@ -7,6 +8,6 @@ module.exports = {
     },
     plugins: [
       // Initialize with default values (see options below)
-      require("tailwindcss-radix")(),
+      import("tailwindcss-radix")(),
     ],
   };
