@@ -5,7 +5,6 @@ import './App.css'
 import { Outlet } from 'react-router-dom'
 import { ButtonDialog } from './component/dialog/app-dialog.tsx'
 
-
 export function App() {
   const [count, setCount] = useState(0)
 

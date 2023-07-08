@@ -150,3 +150,12 @@ input {
     transform: translate(-50%, -50%) scale(1);
   }
 }
+.FormField {
+  display: grid;
+  margin-bottom: 10px;
+}
+.FormMessage {
+  font-size: 13px;
+  color: black;
+  opacity: 0.8;
+}

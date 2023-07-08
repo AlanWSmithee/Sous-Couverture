@@ -7,8 +7,8 @@ type sliderProps = {
 }
 
 export function SliderDemo({ titleLabel }: sliderProps) {
-    const DEFAULT_SLIDER_VALUE = 3;
-    const [slider, setSlider] = useState(DEFAULT_SLIDER_VALUE)
+  const DEFAULT_SLIDER_VALUE = 3
+  const [slider, setSlider] = useState(DEFAULT_SLIDER_VALUE)
   function handleSlider(slider: number) {
     setSlider(slider)
   }
