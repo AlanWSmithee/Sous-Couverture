@@ -7,9 +7,9 @@ type sliderProps = {
 }
 
 export function SliderDemo({ titleLabel }: sliderProps) {
-  const DEFAULT_SLIDER_VALUE = 3
+  const DEFAULT_SLIDER_VALUE = [3]
   const [slider, setSlider] = useState(DEFAULT_SLIDER_VALUE)
-  function handleSlider(slider: number) {
+  function handleSlider(slider: number[]) {
     setSlider(slider)
   }
   return (
@@ -20,7 +20,7 @@ export function SliderDemo({ titleLabel }: sliderProps) {
       3
       <Slider.Root
         className="SliderRoot"
-        defaultValue={[DEFAULT_SLIDER_VALUE]}
+        defaultValue={DEFAULT_SLIDER_VALUE}
         onValueChange={handleSlider}
         max={20}
         min={3}
