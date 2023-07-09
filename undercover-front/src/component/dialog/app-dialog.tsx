@@ -10,7 +10,6 @@ export function ButtonDialog() {
   function handleCheckox(checkbox: boolean) {
     setCheckbox(checkbox)
   }
-  const wait = () => new Promise((resolve) => setTimeout(resolve, 5000))
   const [open, setOpen] = useState(false)
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -26,7 +25,8 @@ export function ButtonDialog() {
           </Dialog.Description>
           <Form.Root
             onSubmit={(event) => {
-              wait().then(() => setOpen(false))
+              setOpen(false)
+              console.log('close')
               event.preventDefault()
             }}>
             <Form.Field className="Fieldset FormField" name="game-name">
@@ -89,9 +89,7 @@ export function ButtonDialog() {
                   marginTop: 25,
                   justifyContent: 'flex-end',
                 }}>
-                <Dialog.Close asChild>
-                  <button className="Button green">Create the game</button>
-                </Dialog.Close>
+                <button className="Button green">Create the game</button>
               </div>
             </Form.Submit>
           </Form.Root>
