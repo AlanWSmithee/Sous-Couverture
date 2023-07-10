@@ -31,34 +31,38 @@ export function ButtonDialog() {
             }}>
             <Form.Field className="Fieldset FormField" name="game-name">
               <Form.Label className="Label">Game's name</Form.Label>
-              <Form.Message className="FormMessage" match="valueMissing">
-                Please enter a name for the game
-              </Form.Message>
-              <Form.Control asChild>
-                <input
-                  className="Input"
-                  id="game-name"
-                  defaultValue="Your game's name here"
-                  required
-                />
-              </Form.Control>
+              <div className="ErrorsMessages">
+                <Form.Message className="FormMessage" match="valueMissing">
+                  Please enter a name for the game
+                </Form.Message>
+                <Form.Control asChild>
+                  <input
+                    className="Input"
+                    id="game-name"
+                    defaultValue="Your game's name here"
+                    required
+                  />
+                </Form.Control>
+              </div>
             </Form.Field>
             <Form.Field className="Fieldset FormField" name="username">
               <Form.Label className="Label">Username</Form.Label>
-              <Form.Message className="FormMessage" match="valueMissing">
-                Please enter your username
-              </Form.Message>
-              <Form.Control asChild>
-                <input
-                  className="Input"
-                  id="username"
-                  defaultValue="Your nickname here"
-                  required
-                />
-              </Form.Control>
+              <div className="ErrorsMessages">
+                <Form.Message className="FormMessage" match="valueMissing">
+                  Please enter your username
+                </Form.Message>
+                <Form.Control asChild>
+                  <input
+                    className="Input"
+                    id="username"
+                    defaultValue="Your nickname here"
+                    required
+                  />
+                </Form.Control>
+              </div>
             </Form.Field>
             <Form.Field className="Fieldset FormField" name="player-number">
-              <SliderDemo titleLabel="Nombre de joueurs" />
+              <SliderDemo titleLabel="Players" />
             </Form.Field>
             <CheckboxDemo
               checked={checkbox}
@@ -68,18 +72,20 @@ export function ButtonDialog() {
             {checkbox && (
               <Form.Field className="Fieldset FormField" name="game-password">
                 <Form.Label className="Label">Password</Form.Label>
-                <Form.Message className="FormMessage" match="valueMissing">
-                  Please enter a password
-                </Form.Message>
-                <Form.Control asChild>
-                  <input
-                    type="password"
-                    className="Input"
-                    id="game-password"
-                    defaultValue=""
-                    required
-                  />
-                </Form.Control>
+                <div className="ErrorsMessages">
+                  <Form.Message className="FormMessage" match="valueMissing">
+                    Please enter a password
+                  </Form.Message>
+                  <Form.Control asChild>
+                    <input
+                      type="password"
+                      className="Input"
+                      id="game-password"
+                      defaultValue=""
+                      required
+                    />
+                  </Form.Control>
+                </div>
               </Form.Field>
             )}
             <Form.Submit asChild>

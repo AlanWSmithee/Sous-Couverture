@@ -13,10 +13,11 @@ export function SliderDemo({ titleLabel }: sliderProps) {
     setSlider(slider)
   }
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '20px'}}>
       <label className="Label" htmlFor="slider">
-        {titleLabel}: {slider}
+        {titleLabel} : {slider}
       </label>
+      <div style={{ display: 'flex', gap: '5px'}}>
       3
       <Slider.Root
         className="SliderRoot"
@@ -31,6 +32,7 @@ export function SliderDemo({ titleLabel }: sliderProps) {
         <Slider.Thumb className="SliderThumb" aria-label="Volume" />
       </Slider.Root>
       20
+      </div>
     </div>
   )
 }

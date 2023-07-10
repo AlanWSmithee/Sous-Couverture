@@ -36,7 +36,7 @@ input {
   margin: 0;
   font-weight: 500;
   color: var(--mauve-12);
-  font-size: 17px;
+  font-size: 21px;
 }
 
 .DialogDescription {
@@ -69,11 +69,14 @@ input {
   box-shadow: 0 0 0 2px black;
 }
 .Button.green {
-  background-color: var(--green-4);
-  color: var(--green-11);
+  /* background-color: var(--green-4);
+  color: var(--green-11); */
+  background-color: green;
+  color: white;
 }
 .Button.green:hover {
   background-color: var(--green-5);
+  background-color: rgb(34, 151, 34);
 }
 .Button.green:focus {
   box-shadow: 0 0 0 2px var(--green-7);
@@ -101,16 +104,16 @@ input {
 
 .Fieldset {
   display: flex;
-  gap: 20px;
   align-items: center;
   margin-bottom: 15px;
+  height: 50px;
 }
 
 .Label {
   font-size: 15px;
   color: var(--violet-11);
   width: 100px;
-  text-align: right;
+  text-align: left;
 }
 
 .Input {
@@ -126,6 +129,8 @@ input {
   color: var(--violet-11);
   box-shadow: 0 0 0 1px var(--violet-7);
   height: 35px;
+  border: 1px solid black;
+  margin-right: 30px;
 }
 .Input:focus {
   box-shadow: 0 0 0 2px var(--violet-8);
@@ -151,11 +156,15 @@ input {
   }
 }
 .FormField {
-  display: grid;
-  margin-bottom: 10px;
+  margin: 10px 10px 10px 10px;
+  gap: 20px;
 }
 .FormMessage {
   font-size: 13px;
   color: black;
   opacity: 0.8;
+}
+
+.ErrorsMessages {
+  display: grid;
 }

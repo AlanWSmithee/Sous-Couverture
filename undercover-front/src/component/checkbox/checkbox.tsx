@@ -13,7 +13,7 @@ export function CheckboxDemo({ checked, titleLabel, onChange }: checkboxProps) {
     onChange(checked)
   }
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div  className="Fieldset FormField">
       <label className="Label" htmlFor="checkbox">
         {titleLabel}
       </label>
