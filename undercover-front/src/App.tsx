@@ -3,7 +3,6 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Outlet } from 'react-router-dom'
-import { ButtonDialog } from './component/dialog/app-dialog.tsx'
 
 export function App() {
   const [count, setCount] = useState(0)
@@ -23,8 +22,6 @@ export function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <br />
-        <ButtonDialog />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
