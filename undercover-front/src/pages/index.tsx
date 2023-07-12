@@ -5,15 +5,23 @@ import { CheckboxDemo } from '@/component/checkbox/checkbox'
 import { SliderDemo } from '@/component/slider/slider'
 
 export function Index() {
-
   const [checkbox, setCheckbox] = useState(false)
   function handleCheckox(checkbox: boolean) {
     setCheckbox(checkbox)
   }
   const [open, setOpen] = useState(false)
+
+  const [slider, setSlider] = useState([3])
+  function handleSlider(slider: number[]) {
+    setSlider(slider)
+  }
   return (
     <>
-      <AppDialog open={open} setOpen={setOpen}>
+      <AppDialog
+        open={open}
+        setOpen={setOpen}
+        titleModal="Create a game"
+        descriptionModal="Make changes to your profile here. Click save when you're done.">
         <Form.Root
           onSubmit={(event) => {
             setOpen(false)
@@ -52,7 +60,11 @@ export function Index() {
             </div>
           </Form.Field>
           <Form.Field className="Fieldset FormField" name="player-number">
-            <SliderDemo titleLabel="Players" />
+            <SliderDemo
+              titleLabel="Players"
+              slider={slider}
+              onChangeSliderValue={handleSlider}
+            />
           </Form.Field>
           <CheckboxDemo
             checked={checkbox}

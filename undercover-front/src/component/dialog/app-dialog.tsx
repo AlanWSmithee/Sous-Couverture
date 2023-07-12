@@ -3,19 +3,32 @@ import './dialog.css'
 
 import { Dispatch, ReactNode, SetStateAction } from 'react'
 
+type TypesModal = {
+  children: ReactNode
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
+  titleModal: string
+  descriptionModal: string
+}
 
-export function AppDialog({ children, open, setOpen }: { children: ReactNode, open: boolean, setOpen: Dispatch<SetStateAction<boolean>> }) {
+export function AppDialog({
+  children,
+  open,
+  setOpen,
+  titleModal,
+  descriptionModal,
+}: TypesModal) {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button className="Button violet">Create a game</button>
+        <button className="Button violet">{titleModal}</button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className="DialogContent">
-          <Dialog.Title className="DialogTitle">Create a game</Dialog.Title>
+          <Dialog.Title className="DialogTitle">{titleModal}</Dialog.Title>
           <Dialog.Description className="DialogDescription">
-            Make changes to your profile here. Click save when you're done.
+            {descriptionModal}
           </Dialog.Description>
           {children}
           <Dialog.Close asChild>
