@@ -8,7 +8,7 @@ type sliderProps = {
   onChangeSliderValue: (slider: number[]) => void
 }
 
-export function SliderDemo({
+export function AppSlider({
   titleLabel,
   slider,
   onChangeSliderValue,

@@ -8,7 +8,7 @@ type checkboxProps = {
   onChange: (checked: boolean) => void // eslint-disable-line no-unused-vars
 }
 
-export function CheckboxDemo({ checked, titleLabel, onChange }: checkboxProps) {
+export function AppCheckbox({ checked, titleLabel, onChange }: checkboxProps) {
   function handleChange(checked: boolean) {
     onChange(checked)
   }

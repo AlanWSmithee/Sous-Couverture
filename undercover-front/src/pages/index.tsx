@@ -1,20 +1,26 @@
 import { AppDialog } from '@/component/dialog/app-dialog'
 import * as Form from '@radix-ui/react-form'
 import { useState } from 'react'
-import { CheckboxDemo } from '@/component/checkbox/checkbox'
-import { SliderDemo } from '@/component/slider/slider'
+import { AppCheckbox } from '@/component/checkbox/app-checkbox'
+import { AppSlider } from '@/component/slider/app-slider'
 
 export function Index() {
+  const [open, setOpen] = useState(false)
+  const [slider, setSlider] = useState([3])
+
+  function handleSlider(slider: number[]) {
+    setSlider(slider)
+  }
+
   const [checkbox, setCheckbox] = useState(false)
   function handleCheckox(checkbox: boolean) {
     setCheckbox(checkbox)
   }
-  const [open, setOpen] = useState(false)
 
-  const [slider, setSlider] = useState([3])
-  function handleSlider(slider: number[]) {
-    setSlider(slider)
-  }
+  const [gameName, setGameName] = useState("Your game's name here")
+  const [userName, setUserName] = useState('Your nickname here')
+  const [password, setPassword] = useState('')
+  
   return (
     <>
       <AppDialog
@@ -35,9 +41,10 @@ export function Index() {
               </Form.Message>
               <Form.Control asChild>
                 <input
+                  value={gameName}
+                  onChange={(e) => setGameName(e.target.value)}
                   className="Input"
                   id="game-name"
-                  defaultValue="Your game's name here"
                   required
                 />
               </Form.Control>
@@ -51,22 +58,23 @@ export function Index() {
               </Form.Message>
               <Form.Control asChild>
                 <input
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
                   className="Input"
                   id="username"
-                  defaultValue="Your nickname here"
                   required
                 />
               </Form.Control>
             </div>
           </Form.Field>
           <Form.Field className="Fieldset FormField" name="player-number">
-            <SliderDemo
+            <AppSlider
               titleLabel="Players"
               slider={slider}
               onChangeSliderValue={handleSlider}
             />
           </Form.Field>
-          <CheckboxDemo
+          <AppCheckbox
             checked={checkbox}
             onChange={handleCheckox}
             titleLabel="Private game"
@@ -80,10 +88,11 @@ export function Index() {
                 </Form.Message>
                 <Form.Control asChild>
                   <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     className="Input"
                     id="game-password"
-                    defaultValue=""
                     required
                   />
                 </Form.Control>
