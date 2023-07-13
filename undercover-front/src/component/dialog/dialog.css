@@ -56,6 +56,9 @@ input {
   line-height: 1;
   font-weight: 500;
   height: 35px;
+  cursor: pointer;
+  border: solid 1px black;
+  margin: 2px;
 }
 .Button.violet {
   background-color: white;
