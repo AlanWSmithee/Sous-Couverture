@@ -3,6 +3,7 @@ import * as Form from '@radix-ui/react-form'
 import { useState } from 'react'
 import { AppCheckbox } from '@/component/checkbox/app-checkbox'
 import { AppSlider } from '@/component/slider/app-slider'
+import { AppDataDialog } from '@/component/data-table/app-data-table'
 
 export function Index() {
   const [openCreate, setOpenCreate] = useState(false)
@@ -198,6 +199,7 @@ export function Index() {
           </Form.Submit>
         </Form.Root>
       </AppDialog>
+      <AppDataDialog />
     </>
   )
 }

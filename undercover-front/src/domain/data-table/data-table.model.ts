@@ -1,7 +1,9 @@
 import { faker } from '@faker-js/faker'
 import { Factory } from 'fishery'
+import { UniqueEnforcer } from 'enforce-unique';
 
 export interface PartyPlayer {
+  id: string
   gameName: string
   state: 'waiting' | 'in_progress' | 'finish'
   lengthPlayers: number
@@ -10,8 +12,14 @@ export interface PartyPlayer {
   private: boolean
 }
 
+const uniqueId = new UniqueEnforcer()
+
+
 export const fakePartyPlayer = Factory.define<PartyPlayer>(() => {
   return {
+    id: uniqueId.enforce(() => {
+      return faker.string.uuid()
+    }),
     gameName: faker.person.fullName(),
     state: 'waiting',
     lengthPlayers: faker.number.int({ min: 1, max: 20 }),

@@ -26,6 +26,9 @@ dependencies:
   '@tanstack/react-query-devtools':
     specifier: ^4.29.25
     version: 4.29.25(@tanstack/react-query@4.29.25)(react-dom@18.2.0)(react@18.2.0)
+  enforce-unique:
+    specifier: ^1.1.1
+    version: 1.1.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -1531,6 +1534,10 @@ packages:
   /electron-to-chromium@1.4.437:
     resolution: {integrity: sha512-ZFekRuBOHUXp21wrR5lshT6pZa/KmjkhKBAtmZz4NN5sCWlHOk3kdhiwFINrDBsRLX6FjyBAb1TRN+KBeNlyzQ==}
     dev: true
+
+  /enforce-unique@1.1.1:
+    resolution: {integrity: sha512-j6mNmJ5nueoHY2gqGoPHS3QznhQHPyxRLmGrKTwFd8RdLBm6nLudSTauasLxST9rEsOpJMxUPQh3ltogDPCRHA==}
+    dev: false
 
   /esbuild@0.17.19:
     resolution: {integrity: sha512-XQ0jAPFkK/u3LcVRcvVHQcTIqD6E2H1fvZMA5dQPSOWb3suUbWbfbRf94pjc0bNzRYLfIrDRQXr7X+LHIm5oHw==}
