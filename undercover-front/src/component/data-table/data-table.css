@@ -39,5 +39,11 @@
   padding: 10px;
   display: flex;
   align-items: center;
+}
+
+button {
   cursor: pointer;
+  border: solid 1px black;
+  padding: 5px;
+  border-radius: 5px;
 }

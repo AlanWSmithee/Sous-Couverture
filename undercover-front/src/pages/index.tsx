@@ -3,12 +3,19 @@ import * as Form from '@radix-ui/react-form'
 import { useState } from 'react'
 import { AppCheckbox } from '@/component/checkbox/app-checkbox'
 import { AppSlider } from '@/component/slider/app-slider'
-import { AppDataDialog } from '@/component/data-table/app-data-table'
+import { AppDataTable } from '@/component/data-table/app-data-table'
+import { PartyPlayer } from '@/domain/data-table/data-table.model'
 
 export function Index() {
   const [openCreate, setOpenCreate] = useState(false)
   const [openJoin, setOpenJoin] = useState(false)
+
   const [openJoinCard, setOpenJoinCard] = useState(false)
+  const [selectedGameData, setSelectedGameData] = useState<PartyPlayer>()
+  const handleCardClick = (data: PartyPlayer) => {
+    setSelectedGameData(data)
+    setOpenJoinCard(true)
+  }
   const [slider, setSlider] = useState([3])
 
   function handleSlider(slider: number[]) {
@@ -201,89 +208,79 @@ export function Index() {
         </Form.Root>
       </AppDialog>
 
-      <AppDataDialog children={
-        <AppDialog
+      <AppDataTable onCardClick={handleCardClick} />
+
+      <AppDialog
         open={openJoinCard}
         setOpen={setOpenJoinCard}
-        titleModal="Join the game"
         descriptionModal="Join the selected game">
-        <Form.Root
-          onSubmit={(event) => {
-            setOpenJoin(false)
-            event.preventDefault()
-          }}>
-          <Form.Field className="Fieldset FormField" name="game-name">
-            <Form.Label className="Label">Game's name</Form.Label>
-            <div className="ErrorsMessages">
-              <Form.Message className="FormMessage" match="valueMissing">
-                Please enter a name for the game
-              </Form.Message>
-              <Form.Control asChild>
-                <input
-                  value={gameNameJoin}
-                  onChange={(e) => setGameNameJoin(e.target.value)}
-                  className="Input"
-                  id="game-name"
-                  required
-                />
-              </Form.Control>
-            </div>
-          </Form.Field>
-          <Form.Field className="Fieldset FormField" name="username">
-            <Form.Label className="Label">Username</Form.Label>
-            <div className="ErrorsMessages">
-              <Form.Message className="FormMessage" match="valueMissing">
-                Please enter your username
-              </Form.Message>
-              <Form.Control asChild>
-                <input
-                  value={userNameJoin}
-                  onChange={(e) => setUserNameJoin(e.target.value)}
-                  className="Input"
-                  id="username"
-                  required
-                />
-              </Form.Control>
-            </div>
-          </Form.Field>
-          <AppCheckbox
-            checked={checkbox}
-            onChange={handleCheckox}
-            titleLabel="Private game"
-          />
-          {checkbox && (
-            <Form.Field className="Fieldset FormField" name="game-password">
-              <Form.Label className="Label">Password</Form.Label>
+        {selectedGameData && (
+          <Form.Root
+            onSubmit={(event) => {
+              setOpenJoin(false)
+              event.preventDefault()
+            }}>
+            <Form.Field className="Fieldset FormField" name="game-name">
+              <Form.Label className="Label">Game's name</Form.Label>
               <div className="ErrorsMessages">
                 <Form.Message className="FormMessage" match="valueMissing">
-                  Please enter a password
+                  Please enter a name for the game
+                </Form.Message>
+                <Form.Control asChild>
+                  <p>{selectedGameData.gameName}</p>
+                </Form.Control>
+              </div>
+            </Form.Field>
+            <Form.Field className="Fieldset FormField" name="username">
+              <Form.Label className="Label">Username</Form.Label>
+              <div className="ErrorsMessages">
+                <Form.Message className="FormMessage" match="valueMissing">
+                  Please enter your username
                 </Form.Message>
                 <Form.Control asChild>
                   <input
-                    value={passwordJoin}
-                    onChange={(e) => setPasswordJoin(e.target.value)}
-                    type="password"
+                    value={userNameJoin}
+                    onChange={(e) => setUserNameJoin(e.target.value)}
                     className="Input"
-                    id="game-password"
+                    id="username"
                     required
                   />
                 </Form.Control>
               </div>
             </Form.Field>
-          )}
-          <Form.Submit asChild>
-            <div
-              style={{
-                display: 'flex',
-                marginTop: 25,
-                justifyContent: 'flex-end',
-              }}>
-              <button className="Button green">Join the game</button>
-            </div>
-          </Form.Submit>
-        </Form.Root>
+            {selectedGameData.private && (
+              <Form.Field className="Fieldset FormField" name="game-password">
+                <Form.Label className="Label">Password</Form.Label>
+                <div className="ErrorsMessages">
+                  <Form.Message className="FormMessage" match="valueMissing">
+                    Please enter a password
+                  </Form.Message>
+                  <Form.Control asChild>
+                    <input
+                      value={passwordJoin}
+                      onChange={(e) => setPasswordJoin(e.target.value)}
+                      type="password"
+                      className="Input"
+                      id="game-password"
+                      required
+                    />
+                  </Form.Control>
+                </div>
+              </Form.Field>
+            )}
+            <Form.Submit asChild>
+              <div
+                style={{
+                  display: 'flex',
+                  marginTop: 25,
+                  justifyContent: 'flex-end',
+                }}>
+                <button className="Button green">Join the game</button>
+              </div>
+            </Form.Submit>
+          </Form.Root>
+        )}
       </AppDialog>
-      } />
     </>
   )
 }

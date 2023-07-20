@@ -7,7 +7,7 @@ type TypesModal = {
   children: ReactNode
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
-  titleModal: string
+  titleModal?: string
   descriptionModal: string
 }
 
@@ -21,7 +21,7 @@ export function AppDialog({
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button className="Button violet">{titleModal}</button>
+        {titleModal && (<button className="Button violet">{titleModal}</button>)}
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay" />

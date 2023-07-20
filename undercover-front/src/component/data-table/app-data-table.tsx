@@ -1,13 +1,21 @@
 import { getListGameParty } from '@/domain/data-table/data-table.service'
 import './data-table.css'
-import { Dispatch, ReactNode, SetStateAction } from 'react'
+import { Dispatch, ReactNode, SetStateAction} from 'react'
+import { PartyPlayer } from '@/domain/data-table/data-table.model'
 
 type TypesDataTable = {
-  children: ReactNode
+  onCardClick: (data: PartyPlayer) => void
 }
 
-export function AppDataDialog({children} : TypesDataTable) {
-  const dataTest = getListGameParty()
+export function AppDataTable({ onCardClick } : TypesDataTable) {
+const dataTest = getListGameParty()
+
+  const handleCardClick = (data: PartyPlayer) => {
+    
+    if (onCardClick) {
+      onCardClick(data);
+    }
+  }
 
   return (
     <div className="">
@@ -24,8 +32,8 @@ export function AppDataDialog({children} : TypesDataTable) {
             </p>
             <p>{(data.private && 'private') || 'public'}</p>
           </div>
-          <div className='rightCards'>
-            {children}
+          <div className='rightCards' onClick={() => handleCardClick(data)}>
+            <button>Join</button>
           </div>
         </div>
       ))}
