@@ -1,25 +1,29 @@
 import { getListGameParty } from '@/domain/data-table/data-table.service'
 import './data-table.css'
-import { Dispatch, ReactNode, SetStateAction} from 'react'
+import { useEffect, useState } from 'react'
 import { PartyPlayer } from '@/domain/data-table/data-table.model'
 
 type TypesDataTable = {
   onCardClick: (data: PartyPlayer) => void
 }
 
-export function AppDataTable({ onCardClick } : TypesDataTable) {
-const dataTest = getListGameParty()
+export function AppDataTable({ onCardClick }: TypesDataTable) {
+  const [dataTest, setDataTest] =
+    useState<PartyPlayer[]>([])
+  useEffect(() => {
+    const data = getListGameParty()
+    setDataTest(data)
+  }, [])
 
   const handleCardClick = (data: PartyPlayer) => {
-    
     if (onCardClick) {
-      onCardClick(data);
+      onCardClick(data)
     }
   }
 
   return (
     <div className="">
-      {dataTest.map((data) => (
+      {dataTest.map((data: PartyPlayer) => (
         <div key={data.id} className="gameCards">
           <div className="leftCards">
             <h3 className="titleCards">{data.gameName}</h3>
@@ -32,7 +36,7 @@ const dataTest = getListGameParty()
             </p>
             <p>{(data.private && 'private') || 'public'}</p>
           </div>
-          <div className='rightCards' onClick={() => handleCardClick(data)}>
+          <div className="rightCards" onClick={() => handleCardClick(data)}>
             <button>Join</button>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { Factory } from 'fishery'
-import { UniqueEnforcer } from 'enforce-unique';
+import { UniqueEnforcer } from 'enforce-unique'
+import { randomElementFromArray } from '@/core/utils/faker'
 
 export interface PartyPlayer {
   id: string
@@ -14,14 +15,13 @@ export interface PartyPlayer {
 
 const uniqueId = new UniqueEnforcer()
 
-
 export const fakePartyPlayer = Factory.define<PartyPlayer>(() => {
   return {
     id: uniqueId.enforce(() => {
       return faker.string.uuid()
     }),
-    gameName: faker.person.fullName(),
-    state: 'waiting',
+    gameName: faker.internet.domainWord(),
+    state: randomElementFromArray(['waiting', 'in_progress', 'finish']),
     lengthPlayers: faker.number.int({ min: 1, max: 20 }),
     maxPlayers: faker.number.int({ min: 3, max: 20 }),
     players: players.buildList(9),
@@ -30,5 +30,5 @@ export const fakePartyPlayer = Factory.define<PartyPlayer>(() => {
 })
 
 const players = Factory.define<string>(() => {
-  return faker.person.fullName()
+  return faker.internet.userName()
 })
