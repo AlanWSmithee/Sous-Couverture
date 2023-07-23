@@ -1,42 +1,33 @@
-import { getListGameParty } from '@/domain/data-table/data-table.service'
+import { AppDataModel } from './app-data.model'
 import './data-table.css'
-import { useEffect, useState } from 'react'
-import { PartyPlayer } from '@/domain/data-table/data-table.model'
 
 type TypesDataTable = {
-  onCardClick: (data: PartyPlayer) => void
+  onCardClick: (data: AppDataModel) => void
+  items: AppDataModel[]
 }
 
-export function AppDataTable({ onCardClick }: TypesDataTable) {
-  const [dataTest, setDataTest] =
-    useState<PartyPlayer[]>([])
-  useEffect(() => {
-    const data = getListGameParty()
-    setDataTest(data)
-  }, [])
-
-  const handleCardClick = (data: PartyPlayer) => {
-    if (onCardClick) {
-      onCardClick(data)
-    }
+export function AppDataTable({ items, onCardClick }: TypesDataTable) {
+  
+  const handleCardClick = (item: AppDataModel) => {
+    onCardClick(item)
   }
 
   return (
     <div className="">
-      {dataTest.map((data: PartyPlayer) => (
-        <div key={data.id} className="gameCards">
+      {items.map((item) => (
+        <div key={item.id} className="gameCards">
           <div className="leftCards">
-            <h3 className="titleCards">{data.gameName}</h3>
-            <div className="playersLists">{data.players}</div>
+            <h3 className="titleCards">{item.gameName}</h3>
+            <div className="playersLists">{item.players}</div>
           </div>
           <div className="middleCards">
-            <p>{data.state}</p>
+            <p>{item.state}</p>
             <p>
-              {data.lengthPlayers}/{data.maxPlayers}
+              {item.lengthPlayers}/{item.maxPlayers}
             </p>
-            <p>{(data.private && 'private') || 'public'}</p>
+            <p>{(item.private && 'private') || 'public'}</p>
           </div>
-          <div className="rightCards" onClick={() => handleCardClick(data)}>
+          <div className="rightCards" onClick={() => handleCardClick(item)}>
             <button>Join</button>
           </div>
         </div>

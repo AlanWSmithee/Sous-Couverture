@@ -2,20 +2,11 @@ import { faker } from '@faker-js/faker'
 import { Factory } from 'fishery'
 import { UniqueEnforcer } from 'enforce-unique'
 import { randomElementFromArray } from '@/core/utils/faker'
-
-export interface PartyPlayer {
-  id: string
-  gameName: string
-  state: 'waiting' | 'in_progress' | 'finish'
-  lengthPlayers: number
-  maxPlayers: number
-  players: string[]
-  private: boolean
-}
+import { AppDataModel } from '@/component/data-table/app-data.model'
 
 const uniqueId = new UniqueEnforcer()
 
-export const fakePartyPlayer = Factory.define<PartyPlayer>(() => {
+export const fakePartyPlayer = Factory.define<AppDataModel>(() => {
   return {
     id: uniqueId.enforce(() => {
       return faker.string.uuid()
