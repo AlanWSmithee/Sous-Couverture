@@ -1,13 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-    theme: {
-      // --snip--
-    },
-    variants: {
-      // --snip--
-    },
-    plugins: [
-      // Initialize with default values (see options below)
-      import("tailwindcss-radix")(),
-    ],
-  };
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {},
+  },
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  plugins: [require('tailwindcss-radix')()],
+}
