@@ -1,6 +1,7 @@
 import { FaUserSecret } from 'react-icons/fa'
 import { AiOutlineCaretRight, AiOutlineCaretLeft } from 'react-icons/ai'
 import { useState } from 'react'
+import './app-carousel.css'
 
 interface CarouselPlayers {
   players: string[]
@@ -9,22 +10,34 @@ interface CarouselPlayers {
 export function AppCarousel({ players }: CarouselPlayers) {
   const [startIndex, setStartIndex] = useState(0)
   const [endIndex, setEndIndex] = useState(3)
+  const [isTransition, setTransition] = useState(false)
+
 
   function previousItem() {
     if (endIndex > 3) {
+      setTransition(true)
       setStartIndex(startIndex - 1)
       setEndIndex(endIndex - 1)
+
+      setTimeout(() => {
+        setTransition(false)
+      }, 300)
     }
   }
 
   function nextItem() {
     if (startIndex < players.length - 3) {
+      setTransition(true)
       setStartIndex(startIndex + 1)
       setEndIndex(endIndex + 1)
+      setTimeout(() => {
+        setTransition(false)
+      }, 300)
     }
+    
   }
   return (
-    <div>
+    <div >
       <div className="relative">
         <div className="absolute left-0 translate-y-2/4">
           <button onClick={previousItem} className="cursor-pointer">
@@ -45,12 +58,15 @@ export function AppCarousel({ players }: CarouselPlayers) {
           index < endIndex && (
             <div
               key={player}
-              className="inline-flex item-center justify-center slide-right">
-              <div className="w-16 truncate mx-2" title={player}>
+              className={
+                 (isTransition ? ' slide ': '') +
+                'inline-flex item-center justify-center slide-right'
+              }
+              >
+              <div className="w-16 truncate mx-2">
                 <FaUserSecret className="w-8 h-8 mx-auto" />
                 <span className="text-xs text-center">{player}</span>
               </div>
-              <button></button>
             </div>
           )
       )}
