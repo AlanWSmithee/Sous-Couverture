@@ -1,9 +1,12 @@
 import Fastify from 'fastify'
+import dotenv from "dotenv";
+dotenv.config();
+
 const fastify = Fastify()
 
-fastify.register(import('@fastify/postgres'), {
-  connectionString: 'postgres://root:root@127.0.0.1/undercover'
-})
+fastify.register(import("@fastify/postgres"), {
+  connectionString: `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DB_NAME}`,
+});
 
 
 fastify.get('/', async (request, reply) => {
