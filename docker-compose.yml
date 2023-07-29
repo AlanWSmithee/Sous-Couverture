@@ -9,5 +9,14 @@ services:
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
+  react:
+    container_name: template
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 127.0.0.1:4200:4200
+    environment:
+      NODE_ENV: test
 volumes:
   psql-data:
