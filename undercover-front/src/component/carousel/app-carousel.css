@@ -1,10 +1,25 @@
-.slide {
-  animation-name: slidein;
+
+.slide-left {
+  animation-name: slideinLeft;
   animation-duration: 500ms;
-  animation-fill-mode: forwards;
 }
 
-@keyframes slidein {
+.slide-right {
+  animation-name: slideinRight;
+  animation-duration: 500ms;
+}
+
+@keyframes slideinLeft {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideinRight {
   from {
     transform: translateX(100%);
   }
