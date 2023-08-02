@@ -1,0 +1,7 @@
+function createGame () {
+
+}
+
+function validateData () {
+
+}
