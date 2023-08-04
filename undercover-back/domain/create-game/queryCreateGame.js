@@ -7,14 +7,14 @@ export function queryPlayers(client, { namePlayer }) {
 
 export function queryGames(client, { gameName, maxPlayers}) {
   return client.query(
-    'INSERT INTO games (game_name, state_game, max_players, private, word_civil, word_undercover) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'
+    'INSERT INTO games (game_name, state_game, max_players, private, word_civil, word_undercover) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
       [gameName, 'waiting', maxPlayers, false, 'pomme', 'fraise']
   );
 }
 
 export function queryListPlayers(client, insertedIdPlayer, insertedIdGame) {
-  client.query(
-    'INSERT INTO list_players (id_players, id_games, score, role) VALUES ($1, $2, $3, $4)'
+  return client.query(
+    'INSERT INTO list_players (id_players, id_games, score, role) VALUES ($1, $2, $3, $4)',
     [insertedIdPlayer, insertedIdGame, 0, "Mr.White"]
   );
 }
