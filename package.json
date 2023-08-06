@@ -1,5 +1,18 @@
 {
-	"dependencies": {
-		"@radix-ui/react-slider": "^1.1.2"
-	}
+  "name": "undercover",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "prettier": "2.7.1"
+  },
+  "keywords": [
+    "games"
+  ],
+  "author": "",
+  "license": "ISC"
 }

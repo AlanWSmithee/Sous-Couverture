@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch index",
-    "migration": "node database/migration/index",
+    "dev": "node --watch ./src/index",
+    "migration": "node ./src/database/migration/index",
+    "format": "prettier --write \"src/**/*.{js,ts}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
