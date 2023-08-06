@@ -1,19 +1,8 @@
-import pg from "pg";
-import dotenv from "dotenv";
+import { database } from "../auth/injecte-dependency.js";
+
 import chalk from "chalk";
 
-const { Client } = pg
-dotenv.config();
-
-const client = new Client({
-  host: process.env.PG_HOST,
-  port: process.env.PG_PORT,
-  database: process.env.PG_DB_NAME,
-  user: process.env.PG_USER,
-  password: process.env.PG_PASSWORD,
-});
-
-await client.connect();
+await database.connect();
 
 async function dropTable () {
     try {
@@ -24,7 +13,7 @@ async function dropTable () {
       ];
 
       for (const query of queries) {
-        await client.query(query);
+        await database.query(query);
       }
       console.log(chalk.green("suppression des tables réussie"));
     } catch (err) {
@@ -68,7 +57,7 @@ async function createTable() {
         );`];
     
     for (const query of queries) {
-        await client.query(query);
+        await database.query(query);
     }
     console.log(chalk.green('création des tables réussie'))
 
@@ -80,6 +69,7 @@ async function createTable() {
 try {
     await dropTable();
     await createTable();
+    await database.disconnect()
     console.log(chalk.green('tout est OK'))
 }catch (err) {
     console.log(chalk.red(err))
