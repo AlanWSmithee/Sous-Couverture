@@ -1,29 +1,30 @@
-import { database } from "../auth/injecte-dependency.js";
+import { database } from '../auth/injecte-dependency.js'
 
-import chalk from "chalk";
+import chalk from 'chalk'
 
-await database.connect();
+await database.connect()
 
-async function dropTable () {
-    try {
-      const queries = [
-        `DROP TABLE IF EXISTS "list_players";`,
-        `DROP TABLE IF EXISTS "games";`,
-        `DROP TABLE IF EXISTS "players";`
-      ];
+async function dropTable() {
+  try {
+    const queries = [
+      `DROP TABLE IF EXISTS "list_players";`,
+      `DROP TABLE IF EXISTS "games";`,
+      `DROP TABLE IF EXISTS "players";`,
+    ]
 
-      for (const query of queries) {
-        await database.query(query);
-      }
-      console.log(chalk.green("suppression des tables réussie"));
-    } catch (err) {
-      console.log(chalk.red(err));
+    for (const query of queries) {
+      await database.query(query)
     }
+    console.log(chalk.green('suppression des tables réussie'))
+  } catch (err) {
+    console.log(chalk.red(err))
+  }
 }
 
 async function createTable() {
-    try {
-      const queries = [`
+  try {
+    const queries = [
+      `
         CREATE TABLE IF NOT EXISTS "players" (
             "id" SERIAL,
             "name" VARCHAR(255) NOT NULL,
@@ -32,7 +33,7 @@ async function createTable() {
             "accessory" VARCHAR(255),
             PRIMARY KEY ("id")
             );`,
-        `CREATE TABLE IF NOT EXISTS "games" (
+      `CREATE TABLE IF NOT EXISTS "games" (
             "id" SERIAL,
             "game_name" VARCHAR(255) NOT NULL,
             "state_game" VARCHAR(255) NOT NULL,
@@ -45,7 +46,7 @@ async function createTable() {
             PRIMARY KEY ("id"),
             CONSTRAINT fk_id_players_turn FOREIGN KEY ("id_players_turn") REFERENCES "players" ("id")
         );`,
-        `CREATE TABLE IF NOT EXISTS "list_players" (
+      `CREATE TABLE IF NOT EXISTS "list_players" (
             "id_players" SERIAL,
             "id_games" SERIAL,
             "score" INTEGER NOT NULL,
@@ -54,23 +55,23 @@ async function createTable() {
             PRIMARY KEY ("id_players", "id_games"),
             CONSTRAINT fk_id_players FOREIGN KEY ("id_players") REFERENCES "players" ("id"),
             CONSTRAINT fk_id_games FOREIGN KEY ("id_games") REFERENCES "games" ("id")
-        );`];
-    
+        );`,
+    ]
+
     for (const query of queries) {
-        await database.query(query);
+      await database.query(query)
     }
     console.log(chalk.green('création des tables réussie'))
-
-    } catch(err) {
-        console.log(chalk.red(err))
-    }
+  } catch (err) {
+    console.log(chalk.red(err))
+  }
 }
 
 try {
-    await dropTable();
-    await createTable();
-    await database.disconnect()
-    console.log(chalk.green('tout est OK'))
-}catch (err) {
-    console.log(chalk.red(err))
+  await dropTable()
+  await createTable()
+  await database.disconnect()
+  console.log(chalk.green('tout est OK'))
+} catch (err) {
+  console.log(chalk.red(err))
 }
